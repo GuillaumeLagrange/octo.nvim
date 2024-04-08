@@ -4,6 +4,7 @@ local gh = require "octo.gh"
 local graphql = require "octo.gh.graphql"
 local picker = require "octo.picker"
 local reviews = require "octo.reviews"
+local thread_panel = require "octo.reviews.thread-panel"
 local window = require "octo.ui.window"
 local writers = require "octo.ui.writers"
 local utils = require "octo.utils"
@@ -225,6 +226,11 @@ function M.setup()
         else
           utils.error "Please start or resume a review first"
         end
+      end,
+    },
+    review_diff = {
+      show_line_threads = function()
+        require("octo.reviews.thread-panel").show_review_threads()
       end,
     },
     gist = {

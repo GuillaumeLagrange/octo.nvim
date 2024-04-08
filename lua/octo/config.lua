@@ -127,7 +127,7 @@ function M.get_default_values()
       },
     },
     reviews = {
-      auto_show_threads = true,
+      auto_show_threads = false,
     },
     pull_requests = {
       order_by = {
