@@ -432,6 +432,9 @@ end
 
 function M.jump_to_pending_review_thread(thread)
   local current_review = M.get_current_review()
+  local conf = config.values
+  local auto_show_threads = conf.reviews.auto_show_threads or false
+
   for _, file in ipairs(current_review.layout.files) do
     if thread.path == file.path then
       current_review.layout:ensure_layout()
@@ -445,6 +448,9 @@ function M.jump_to_pending_review_thread(thread)
         local line = review_level == "COMMIT" and thread.originalStartLine or thread.startLine
         vim.api.nvim_set_current_win(win)
         vim.api.nvim_win_set_cursor(win, { line, 0 })
+        if not auto_show_threads then
+          thread_panel.show_review_threads()
+        end
       else
         utils.error "Cannot find diff window"
       end
