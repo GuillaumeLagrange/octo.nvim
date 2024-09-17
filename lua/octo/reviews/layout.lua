@@ -51,7 +51,7 @@ function Layout:open(review)
 
   local file = self:cur_file()
   if file then
-    self:set_file(file)
+    self:set_file(file, "right")
   else
     self:file_safeguard()
   end
@@ -133,7 +133,7 @@ function Layout:update_files()
   self.file_panel:render()
   self.file_panel:redraw()
   local file = self:cur_file()
-  self:set_file(file)
+  self:set_file(file, "right")
   self.update_needed = false
 end
 
